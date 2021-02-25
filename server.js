@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
+const axios = require('axios');
+const api = require('./config');
 
 const app = express();
 const PORT = 3000;
-const axios = require('axios');
 
 app.use(express.static(path.join(__dirname, './public')));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Got request');
@@ -13,10 +15,15 @@ app.get('/', (req, res) => {
 
 app.get('/products/:id', (req, res) => {
   const { id } = req.params.id;
-  axios.get(`/details/${id}`)
+  axios.get(`${api.api}/products`, {
+    headers: {
+      'Authorization': api.TOKEN
+    }
+  })
     .then((data) => {
-      res.send(data);
-    });
+      console.log(data);
+    })
+    .catch(err => console.log(err))
 });
 
 app.listen(PORT, () => {
