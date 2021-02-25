@@ -1,7 +1,9 @@
 import React from 'react';
 
 const QA = () => (
-  <div>Hi</div>
+  <div>
+    <h1>Questions and Answers</h1>
+  </div>
 );
 
 export default QA;
