@@ -17,13 +17,13 @@ app.get('/products/:id', (req, res) => {
   const { id } = req.params.id;
   axios.get(`${api.api}/products`, {
     headers: {
-      'Authorization': api.TOKEN
-    }
+      Authorization: api.TOKEN,
+    },
   })
     .then((data) => {
       console.log(data);
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err));
 });
 
 app.listen(PORT, () => {
